@@ -23,21 +23,21 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping()
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "users";
-    }
-
 //    @GetMapping()
-//    public String home() {
-//        List<User> list = userService.getAll();
-//        ModelAndView mav = new ModelAndView("index");
-//        mav.addObject("listCustomer", listCustomer);
-//        return mav;
+//    public String printWelcome(ModelMap model) {
+//        List<String> messages = new ArrayList<>();
+//        messages.add("Hello!");
+//        messages.add("I'm Spring MVC application");
+//        messages.add("5.2.0 version by sep'19 ");
+//        model.addAttribute("messages", messages);
+//        return "users";
 //    }
+
+    @GetMapping()
+    public ModelAndView main() {
+        List<User> listUser = userService.getAll();
+        ModelAndView mav = new ModelAndView("users");
+        mav.addObject("listUser", listUser);
+        return mav;
+    }
 }
