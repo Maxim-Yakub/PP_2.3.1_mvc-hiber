@@ -7,22 +7,23 @@
     <title>Новый пользователь</title>
 </head>
 <body>
+<div align="center">
+    <h2>Новый пользователь</h2>
+    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+        <label for="name">Введите имя</label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <br/>
 
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
-    <label for="name">Введите имя</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br/>
+        <label for="lastName">Введите фамилию</label>
+        <input type="text" th:field="*{lastName}" id="lastName"/>
+        <br/>
 
-    <label for="lastName">Введите фамилию</label>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-    <br/>
+        <label for="email">Введите почту</label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <br/>
 
-    <label for="email">Введите почту</label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <br/>
-
-    <input type="submit" th:value="Создать"/>
-</form>
-
+        <input type="submit" th:value="Создать"/>
+    </form>
+</div>
 </body>
 </html>

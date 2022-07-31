@@ -28,9 +28,9 @@
             <td th:text="${user.getLastName()}"></td>
             <td th:text="${user.getEmail()}"></td>
                 <td>
-                    <a href="/edit?id=${user.id}">Редактировать</a>
+                    <a th:href="@{users/{id}/edit(id=${user.getId()})}" th:text="Редактировать">user</a>
 
-                    <a href="/delete?id=${user.id}">Удалить</a>
+                    <a th:href="@{users/{id}/delete(id=${user.getId()})}" th:text="Удалить">user</a>
                 </td>
             </tr>
     </table>
