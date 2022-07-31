@@ -1,9 +1,13 @@
 package crud.controller;
 
+import crud.model.User;
+import crud.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
+
+    private final UserService userService;
+
+    @Autowired
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping()
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
@@ -20,4 +32,12 @@ public class UsersController {
         model.addAttribute("messages", messages);
         return "users";
     }
+
+//    @GetMapping()
+//    public String home() {
+//        List<User> list = userService.getAll();
+//        ModelAndView mav = new ModelAndView("index");
+//        mav.addObject("listCustomer", listCustomer);
+//        return mav;
+//    }
 }
