@@ -9,8 +9,8 @@
 <div align="center">
     <h2>Пользователи</h2>
     <form method="get" action="search">
-        <input type="text" name="keyword" />
-        <input type="submit" value="Найти" />
+        <input type="text" name="keyword"/>
+        <input type="submit" value="Найти"/>
     </form>
     <h3><a href="/users/newUser">Новый пользователь</a></h3>
     <table border="1" cellpadding="5">
@@ -22,17 +22,18 @@
             <th>Действие</th>
         </tr>
 
-        <tr th:each ="user, iterStat : ${users} ">
+        <tr th:each="user, iterStat : ${users} ">
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getName()}"></td>
             <td th:text="${user.getLastName()}"></td>
             <td th:text="${user.getEmail()}"></td>
-                <td>
-                    <a th:href="@{users/{id}/edit(id=${user.getId()})}" th:text="Редактировать">user</a>
-
-                    <a th:href="@{users/{id}/delete(id=${user.getId()})}" th:text="Удалить">user</a>
-                </td>
-            </tr>
+            <td>
+                <a th:href="@{users/{id}/edit(id=${user.getId()})}" th:text="Редактировать">user</a>
+                <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+        </tr>
     </table>
 </div>
 </body>
