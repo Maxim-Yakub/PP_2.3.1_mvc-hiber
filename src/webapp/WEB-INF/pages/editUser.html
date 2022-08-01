@@ -9,31 +9,10 @@
 <body>
 <div align="center">
     <h2>Редактирование пользователя</h2>
-    <form th:method="PATH" th:action="@{/users}" th:object="${user}">
-        <table border="0" cellpadding="5">
-            <tr>
-                <td> ID: </td>
-                <td th:text="id"></td>
-            </tr>
-            <tr>
-                <td>Имя: </td>
-                <td><th:input path="name" /></td>
-            </tr>
-            <tr>
-                <td>Фамилия: </td>
-                <td><th:input path="email" /></td>
-            </tr>
-            <tr>
-                <td>Почта: </td>
-                <td><th:input path="address" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Сохранить изменения"></td>
-            </tr>
-        </table>
+    <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
 
-        <label for="name">Введите имя</label>
-        <input type="text" th:field="*{name}" id="name"/>
+        <label>ID</label>
+        <label th:text="*{id}"/>
         <br/>
 
         <label for="name">Введите имя</label>
@@ -46,9 +25,10 @@
 
         <label for="email">Введите почту</label>
         <input type="text" th:field="*{email}" id="email"/>
+
         <br/>
 
-        <input type="submit" th:value="Создать"/>
+        <input type="submit" th:value="Сохранить"/>
     </form>
 </div>
 </body>

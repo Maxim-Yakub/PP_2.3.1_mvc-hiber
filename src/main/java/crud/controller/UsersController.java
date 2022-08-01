@@ -47,4 +47,12 @@ public class UsersController {
         model.addAttribute("user", userService.get(id));
         return "editUser";
     }
+
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+        userService.update(id, user);
+        return "redirect:/users";
+    }
+
+
 }

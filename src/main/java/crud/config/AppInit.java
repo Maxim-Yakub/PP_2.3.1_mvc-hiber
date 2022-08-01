@@ -1,6 +1,7 @@
 package crud.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
@@ -33,7 +34,11 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
+//        registerHiddenFieldFilter(servletContext);
+
         super.onStartup(servletContext);
+
+
     }
 
     @Override
@@ -41,6 +46,12 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
-        return new Filter[]{filter};
+        return new Filter[]{filter,  new HiddenHttpMethodFilter()};
     }
+
+//    private void registerHiddenFieldFilter(ServletContext aContext) {
+//        aContext.addFilter("hiddenHttpMethodFilter",
+//                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
+//    }
+
 }
