@@ -25,6 +25,12 @@ public class UsersController {
         return "users";
     }
 
+    @GetMapping("/search")
+    public String searchUser(@RequestParam(value = "keyword") String keyword, Model model) {
+        model.addAttribute("users", userService.search(keyword));
+        return "searchUser";
+    }
+
     @GetMapping("/newUser")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
@@ -37,11 +43,6 @@ public class UsersController {
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}")
-    public String showUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.get(id));
-        return "showUser";
-    }
     @GetMapping("/{id}/edit")
     public String editUser(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.get(id));
@@ -59,11 +60,4 @@ public class UsersController {
         userService.delete(id);
         return "redirect:/users";
     }
-
-    @GetMapping("/search")
-    public String searchUser(@RequestParam(value = "keyword") String keyword, Model model) {
-        model.addAttribute("users", userService.search(keyword));
-        return "searchUser";
-    }
-
 }
