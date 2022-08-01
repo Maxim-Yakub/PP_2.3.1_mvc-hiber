@@ -1,7 +1,7 @@
 package crud.service;
 
 import crud.model.User;
-import crud.repo.Repository;
+import crud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +13,10 @@ import java.util.List;
 @Transactional
 public class UserService {
     final
-    Repository repository;
+    UserRepository repository;
 
     @Autowired
-    public UserService(Repository repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -41,5 +41,9 @@ public class UserService {
         userToBeUpdated.setName(updatedUser.getName());
         userToBeUpdated.setLastName(updatedUser.getLastName());
         userToBeUpdated.setEmail(updatedUser.getEmail());
+    }
+
+    public List<User> search(String keyword) {
+        return repository.search(keyword);
     }
 }

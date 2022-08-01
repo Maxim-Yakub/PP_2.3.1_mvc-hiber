@@ -60,5 +60,10 @@ public class UsersController {
         return "redirect:/users";
     }
 
+    @GetMapping("/search")
+    public String searchUser(@RequestParam(value = "keyword") String keyword, Model model) {
+        model.addAttribute("users", userService.search(keyword));
+        return "searchUser";
+    }
 
 }
